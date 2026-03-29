@@ -546,7 +546,16 @@
     <div class="check-circle"></div>
     <span class="check-text">✈️ 탑승수속 4/2 20:40까지</span>
   </div>
+  <div class="check-item" onclick="this.classList.toggle('done')">
+    <div class="check-circle"></div>
+    <span class="check-text">🏨 취소기한 4/2 18:00</span>
+  </div>
+  <a href="https://blog.naver.com/80sunjin/224187028592" target="_blank" class="check-item" style="text-decoration:none;">
+    <div class="check-circle"></div>
+    <span class="check-text">📋 입국신고서 만들기 →</span>
+  </a>
 </div>
+
 
 <!-- MAIN GRID -->
 <div class="main">
@@ -806,7 +815,7 @@
       </div>
     </div>
     <div id="realmap" style="width:100%;height:520px;z-index:1;position:relative;"></div>
-    <button onclick="locateMe()" id="locate-btn" title="내 위치" style="position:absolute;bottom:100px;right:16px;z-index:1000;width:40px;height:40px;border-radius:50%;background:white;border:none;box-shadow:0 2px 8px rgba(0,0,0,0.25);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;transition:all 0.2s;" onmouseover="this.style.boxShadow='0 4px 16px rgba(0,0,0,0.3)'" onmouseout="this.style.boxShadow='0 2px 8px rgba(0,0,0,0.25)'">
+    <button onclick="locateMe()" id="locate-btn" title="내 위치" style="position:absolute;bottom:24px;right:12px;z-index:1000;width:36px;height:36px;border-radius:50%;background:white;border:none;box-shadow:0 2px 8px rgba(0,0,0,0.25);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;" onmouseover="this.style.boxShadow='0 4px 16px rgba(0,0,0,0.3)'" onmouseout="this.style.boxShadow='0 2px 8px rgba(0,0,0,0.25)'">
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3d7fd9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="12" cy="12" r="3"/>
     <circle cx="12" cy="12" r="7" stroke-dasharray="2 2"/>
