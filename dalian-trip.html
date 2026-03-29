@@ -15,75 +15,425 @@
     --line: #e8e0d0;
     --card: #ffffff;
   }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--paper); color: var(--ink); font-family: 'Noto Sans KR', sans-serif; font-weight: 300; min-height: 100vh; }
-  .header { background: #3a2e28; color: var(--paper); padding: 48px 40px 40px; position: relative; overflow: hidden; }
-  .header::before { content: '大连'; font-family: 'Noto Serif KR', serif; font-size: 200px; font-weight: 900; color: rgba(255,255,255,0.04); position: absolute; right: -20px; top: -30px; line-height: 1; pointer-events: none; letter-spacing: -8px; }
-  .header-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; }
-  .trip-title { font-family: 'Noto Serif KR', serif; font-size: 13px; font-weight: 400; color: var(--gold); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 10px; }
-  .city-name { font-family: 'Noto Serif KR', serif; font-size: 52px; font-weight: 900; line-height: 1; letter-spacing: -2px; }
-  .city-sub { font-family: 'DM Mono', monospace; font-size: 13px; color: rgba(245,240,232,0.4); margin-top: 8px; letter-spacing: 2px; }
-  .flight-badge { background: var(--red); padding: 16px 24px; border-radius: 2px; text-align: right; }
-  .flight-badge .route { font-family: 'DM Mono', monospace; font-size: 18px; font-weight: 500; letter-spacing: 3px; }
-  .flight-badge .dates { font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 4px; letter-spacing: 1px; }
-  .flight-strip { background: #4a3f38; padding: 20px 40px; display: flex; gap: 0; align-items: stretch; overflow-x: auto; }
-  .flight-card { flex: 1; min-width: 200px; padding: 16px 24px; border-right: 1px solid rgba(255,255,255,0.08); }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: #3a2e28;
+    color: var(--paper);
+    padding: 48px 40px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '大连';
+    font-family: 'Noto Serif KR', serif;
+    font-size: 200px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.04);
+    position: absolute;
+    right: -20px;
+    top: -30px;
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -8px;
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .trip-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .city-name {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+
+  .city-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: rgba(245,240,232,0.4);
+    margin-top: 8px;
+    letter-spacing: 2px;
+  }
+
+  .flight-badge {
+    background: var(--red);
+    padding: 16px 24px;
+    border-radius: 2px;
+    text-align: right;
+  }
+
+  .flight-badge .route {
+    font-family: 'DM Mono', monospace;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 3px;
+  }
+
+  .flight-badge .dates {
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 4px;
+    letter-spacing: 1px;
+  }
+
+  /* FLIGHT STRIP */
+  .flight-strip {
+    background: #4a3f38;
+    padding: 20px 40px;
+    display: flex;
+    gap: 0;
+    align-items: stretch;
+    overflow-x: auto;
+  }
+
+  .flight-card {
+    flex: 1;
+    min-width: 200px;
+    padding: 16px 24px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
   .flight-card:last-child { border-right: none; }
-  .flight-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--gold); letter-spacing: 3px; margin-bottom: 8px; }
-  .flight-info { color: var(--paper); font-size: 13px; line-height: 1.8; }
-  .flight-time { font-family: 'DM Mono', monospace; font-size: 22px; font-weight: 500; color: #fff; letter-spacing: 1px; }
-  .flight-num { font-family: 'DM Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.4); }
-  .hotel-strip { background: var(--gold); padding: 16px 40px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
-  .hotel-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; color: rgba(26,20,16,0.5); }
-  .hotel-name { font-family: 'Noto Serif KR', serif; font-size: 16px; font-weight: 600; color: var(--ink); }
-  .hotel-detail { font-family: 'DM Mono', monospace; font-size: 11px; color: rgba(26,20,16,0.55); margin-left: auto; display: flex; gap: 20px; }
-  .hotel-detail span { display: flex; align-items: center; gap: 6px; }
-  .checklist-bar { background: #5a4e46; padding: 14px 40px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .checklist-title { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--gold); letter-spacing: 3px; margin-right: 8px; }
-  .check-item { display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; cursor: pointer; transition: all 0.2s; }
+
+  .flight-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+  }
+
+  .flight-info {
+    color: var(--paper);
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .flight-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 22px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 1px;
+  }
+
+  .flight-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* HOTEL STRIP */
+  .hotel-strip {
+    background: var(--gold);
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .hotel-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: rgba(26,20,16,0.5);
+  }
+
+  .hotel-name {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .hotel-detail {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: rgba(26,20,16,0.55);
+    margin-left: auto;
+    display: flex;
+    gap: 20px;
+  }
+
+  .hotel-detail span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* CHECKLIST */
+  .checklist-bar {
+    background: #5a4e46;
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .checklist-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 3px;
+    margin-right: 8px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
   .check-item:hover { background: rgba(184,149,42,0.15); border-color: var(--gold); }
   .check-item.done { background: rgba(184,149,42,0.2); border-color: var(--gold); }
   .check-item.done .check-circle { background: var(--gold); }
   .check-item.done .check-circle::after { opacity: 1; }
-  .check-circle { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.3); position: relative; transition: all 0.2s; flex-shrink: 0; }
-  .check-circle::after { content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 8px; color: var(--ink); font-weight: 700; opacity: 0; transition: opacity 0.2s; }
-  .check-text { font-family: 'DM Mono', monospace; font-size: 11px; color: rgba(245,240,232,0.7); }
-  .main { padding: 40px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
-  @media (max-width: 900px) { .main { grid-template-columns: 1fr 1fr; padding: 24px; } .header { padding: 32px 24px 28px; } .flight-strip, .hotel-strip, .checklist-bar { padding: 16px 24px; } }
-  @media (max-width: 600px) { .main { grid-template-columns: 1fr; padding: 16px; } .city-name { font-size: 36px; } .header::before { font-size: 120px; } }
-  .section-card { background: var(--card); border: 1px solid var(--line); border-radius: 2px; overflow: hidden; }
-  .section-card.full-width { grid-column: 1 / -1; }
-  .section-header { padding: 14px 20px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 10px; }
-  .section-icon { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+
+  .check-circle {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    position: relative;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .check-circle::after {
+    content: '✓';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 8px;
+    color: var(--ink);
+    font-weight: 700;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .check-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: rgba(245,240,232,0.7);
+  }
+
+  /* MAIN GRID */
+  .main {
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+
+  @media (max-width: 900px) {
+    .main { grid-template-columns: 1fr 1fr; padding: 24px; }
+    .header { padding: 32px 24px 28px; }
+    .flight-strip, .hotel-strip, .checklist-bar { padding: 16px 24px; }
+  }
+  @media (max-width: 600px) {
+    .main { grid-template-columns: 1fr; padding: 16px; }
+    .city-name { font-size: 36px; }
+    .header::before { font-size: 120px; }
+  }
+
+  /* SECTION CARD */
+  .section-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .section-card.full-width {
+    grid-column: 1 / -1;
+  }
+
+  .section-header {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-icon {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
   .icon-dinner { background: #fde8e0; }
   .icon-breakfast { background: #fff8e0; }
   .icon-shopping { background: #e8f0ff; }
   .icon-tour { background: #e4f5e8; }
-  .section-title { font-family: 'Noto Serif KR', serif; font-size: 14px; font-weight: 600; }
-  .section-count { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-left: auto; letter-spacing: 1px; }
+  .icon-spa { background: #f5e8f5; }
+
+  .section-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .section-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin-left: auto;
+    letter-spacing: 1px;
+  }
+
+  /* PLACE ITEM */
   .place-list { padding: 0; }
-  .place-item { padding: 14px 20px; border-bottom: 1px solid var(--line); display: flex; align-items: flex-start; gap: 12px; transition: background 0.15s; text-decoration: none; color: inherit; cursor: pointer; }
+
+  .place-item {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    transition: background 0.15s;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
   .place-item:last-child { border-bottom: none; }
   .place-item:hover { background: #f0ebe0; }
-  .place-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); min-width: 18px; margin-top: 2px; }
+
+  .place-index {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    min-width: 18px;
+    margin-top: 2px;
+  }
+
   .place-body { flex: 1; }
-  .place-name { font-size: 13px; font-weight: 500; line-height: 1.4; margin-bottom: 3px; }
-  .place-meta { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); line-height: 1.5; }
-  .place-price { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; color: var(--red); white-space: nowrap; margin-top: 2px; }
-  .map-link { display: inline-flex; align-items: center; gap: 3px; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--gold); text-decoration: none; margin-top: 4px; padding: 3px 8px; border: 1px solid var(--gold); border-radius: 2px; transition: all 0.15s; }
+
+  .place-name {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 3px;
+  }
+
+  .place-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .place-price {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--red);
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+
+  .map-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    text-decoration: none;
+    margin-top: 4px;
+    padding: 3px 8px;
+    border: 1px solid var(--gold);
+    border-radius: 2px;
+    transition: all 0.15s;
+  }
+
   .map-link:hover { background: var(--gold); color: var(--ink); }
+
+  /* MASSAGE SPECIAL */
   .spa-card .section-header { background: #4a2f4a; }
   .spa-card .section-title { color: #e8c8e8; }
   .spa-card .section-icon { background: rgba(255,255,255,0.1); }
   .spa-card .section-count { color: rgba(232,200,232,0.5); }
   .spa-card .place-item { border-color: rgba(0,0,0,0.06); }
   .spa-card .place-item:hover { background: #f8f0f8; }
-  .footer { padding: 24px 40px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-  .footer-info { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 1px; }
-  .cancel-notice { background: #fff5f3; border: 1px solid #f5c0b0; padding: 8px 16px; border-radius: 2px; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--red); letter-spacing: 0.5px; }
+
+  /* FOOTER */
+  .footer {
+    padding: 24px 40px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-info {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  .cancel-notice {
+    background: #fff5f3;
+    border: 1px solid #f5c0b0;
+    padding: 8px 16px;
+    border-radius: 2px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--red);
+    letter-spacing: 0.5px;
+  }
+
+  /* DIVIDER LINE */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin: 0 20px;
+  }
 </style>
 </head>
 <body>
+
+<!-- HEADER -->
 <div class="header">
   <div class="header-top">
     <div>
@@ -98,70 +448,278 @@
     </div>
   </div>
 </div>
+
+<!-- FLIGHT STRIP -->
 <div class="flight-strip">
-  <div class="flight-card"><div class="flight-label">OUTBOUND</div><div class="flight-time">22:40</div><div class="flight-info" style="color:rgba(245,240,232,0.6);">인천 T1 → 대련 저우수이쯔</div><div class="flight-num">CZ676 · Class R</div></div>
-  <div class="flight-card"><div class="flight-label">INBOUND</div><div class="flight-time">19:10</div><div class="flight-info" style="color:rgba(245,240,232,0.6);">대련 저우수이쯔 → 인천 T1</div><div class="flight-num">CZ675 · Class R</div></div>
-  <div class="flight-card"><div class="flight-label">BOOKING</div><div class="flight-info" style="color:rgba(245,240,232,0.8);font-size:12px;line-height:2;"><span style="color:#fff;">Go260128305280000053</span><br>HAN/NAMHEE · 1PAX<br><span style="color:var(--gold);">KRW 126,500</span></div></div>
-  <div class="flight-card"><div class="flight-label">NOTICE</div><div class="flight-info" style="color:rgba(245,240,232,0.55);font-size:11px;line-height:2;">출발 최소 2시간 전<br>탑승수속 완료 필수</div></div>
+  <div class="flight-card">
+    <div class="flight-label">OUTBOUND</div>
+    <div class="flight-time">22:40</div>
+    <div class="flight-info" style="color:rgba(245,240,232,0.6);">인천 T1 → 대련 저우수이쯔</div>
+    <div class="flight-num">CZ676 · Class R</div>
+  </div>
+  <div class="flight-card">
+    <div class="flight-label">INBOUND</div>
+    <div class="flight-time">19:10</div>
+    <div class="flight-info" style="color:rgba(245,240,232,0.6);">대련 저우수이쯔 → 인천 T1</div>
+    <div class="flight-num">CZ675 · Class R</div>
+  </div>
+  <div class="flight-card">
+    <div class="flight-label">BOOKING</div>
+    <div class="flight-info" style="color:rgba(245,240,232,0.8);font-size:12px;line-height:2;">
+      <span style="color:#fff;">Go260128305280000053</span><br>
+      HAN/NAMHEE · 1PAX<br>
+      <span style="color:var(--gold);">KRW 126,500</span>
+    </div>
+  </div>
+  <div class="flight-card">
+    <div class="flight-label">NOTICE</div>
+    <div class="flight-info" style="color:rgba(245,240,232,0.55);font-size:11px;line-height:2;">
+      출발 최소 2시간 전<br>탑승수속 완료 필수
+    </div>
+  </div>
 </div>
+
+<!-- HOTEL STRIP -->
 <div class="hotel-strip">
   <div class="hotel-label">HOTEL</div>
   <div class="hotel-name">올리구야 호텔 · 奥利古雅酒店</div>
   <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(26,20,16,0.5);">다롄 기차역 동관거리점</div>
-  <div class="hotel-detail"><span>📅 04.02(목) 15:00 체크인</span><span>📅 04.05(일) 12:00 체크아웃</span><span style="color:var(--red);">₩203,423</span></div>
+  <div class="hotel-detail">
+    <span>📅 04.02(목) 15:00 체크인</span>
+    <span>📅 04.05(일) 12:00 체크아웃</span>
+    <span style="color:var(--red);">₩203,423</span>
+  </div>
 </div>
+
+<!-- CHECKLIST -->
 <div class="checklist-bar">
   <div class="checklist-title">CHECKLIST</div>
-  <div class="check-item" onclick="this.classList.toggle('done')"><div class="check-circle"></div><span class="check-text">📱 Amap 설치</span></div>
-  <div class="check-item" onclick="this.classList.toggle('done')"><div class="check-circle"></div><span class="check-text">📶 유심 설치</span></div>
-  <div class="check-item" onclick="this.classList.toggle('done')"><div class="check-circle"></div><span class="check-text">💳 알리페이 설치</span></div>
-  <div class="check-item" onclick="this.classList.toggle('done')"><div class="check-circle"></div><span class="check-text">✈️ 탑승수속 4/2 20:40까지</span></div>
-  <div class="check-item" onclick="this.classList.toggle('done')"><div class="check-circle"></div><span class="check-text">🏨 취소기한 4/2 18:00</span></div>
+  <div class="check-item" onclick="this.classList.toggle('done')">
+    <div class="check-circle"></div>
+    <span class="check-text">📱 Amap 설치</span>
+  </div>
+  <div class="check-item" onclick="this.classList.toggle('done')">
+    <div class="check-circle"></div>
+    <span class="check-text">📶 유심 설치</span>
+  </div>
+  <div class="check-item" onclick="this.classList.toggle('done')">
+    <div class="check-circle"></div>
+    <span class="check-text">💳 알리페이 설치</span>
+  </div>
+  <div class="check-item" onclick="this.classList.toggle('done')">
+    <div class="check-circle"></div>
+    <span class="check-text">✈️ 탑승수속 4/2 20:40까지</span>
+  </div>
 </div>
+
+<!-- MAIN GRID -->
 <div class="main">
+
+  <!-- 저녁 -->
   <div class="section-card">
-    <div class="section-header"><div class="section-icon icon-dinner">🍢</div><div class="section-title">저녁 식사</div><div class="section-count">2곳</div></div>
+    <div class="section-header">
+      <div class="section-icon icon-dinner">🍢</div>
+      <div class="section-title">저녁 식사</div>
+      <div class="section-count">2곳</div>
+    </div>
     <div class="place-list">
-      <a class="place-item" href="https://surl.amap.com/mZkdTdf1ggkh" target="_blank"><div class="place-index">01</div><div class="place-body"><div class="place-name">정황기 해산물 바베큐</div><div class="place-meta" style="font-size:10px;color:var(--muted);margin-bottom:2px;">正黄旗海鲜烧烤大排档</div><div class="place-meta">延安路17号 · 해산물</div><div class="place-price">¥165/인</div></div><div><div class="map-link">지도 →</div></div></a>
-      <a class="place-item" href="https://surl.amap.com/aeu2DcG1146N" target="_blank"><div class="place-index">02</div><div class="place-body"><div class="place-name">씨쇼어 위라오</div><div class="place-meta" style="font-size:10px;color:var(--muted);margin-bottom:2px;">Seashore Yulao</div><div class="place-meta">长江路与天津街 남 125m · 중국음식</div><div class="place-price">¥108/인</div></div><div><div class="map-link">지도 →</div></div></a>
+      <a class="place-item" href="https://surl.amap.com/mZkdTdf1ggkh" target="_blank">
+        <div class="place-index">01</div>
+        <div class="place-body">
+          <div class="place-name">정황기 해산물 바베큐</div>
+          <div class="place-meta" style="font-size:10px;color:var(--muted);margin-bottom:2px;">正黄旗海鲜烧烤大排档</div>
+          <div class="place-meta">延安路17号中心小学旁 · 해산물</div>
+          <div class="place-price">¥165/인</div>
+        </div>
+        <div>
+          <div class="map-link">지도 →</div>
+        </div>
+      </a>
+      <a class="place-item" href="https://surl.amap.com/aeu2DcG1146N" target="_blank">
+        <div class="place-index">02</div>
+        <div class="place-body">
+          <div class="place-name">씨쇼어 위라오</div>
+          <div class="place-meta" style="font-size:10px;color:var(--muted);margin-bottom:2px;">Seashore Yulao</div>
+          <div class="place-meta">长江路与天津街교차로 남 125m · 중국 음식</div>
+          <div class="place-price">¥108/인</div>
+        </div>
+        <div>
+          <div class="map-link">지도 →</div>
+        </div>
+      </a>
     </div>
   </div>
+
+  <!-- 아침 -->
   <div class="section-card">
-    <div class="section-header"><div class="section-icon icon-breakfast">🌅</div><div class="section-title">아침 식사</div><div class="section-count">2곳</div></div>
+    <div class="section-header">
+      <div class="section-icon icon-breakfast">🌅</div>
+      <div class="section-title">아침 식사</div>
+      <div class="section-count">2곳</div>
+    </div>
     <div class="place-list">
-      <a class="place-item" href="https://surl.amap.com/a6IGT1Q19gw6" target="_blank"><div class="place-index">01</div><div class="place-body"><div class="place-name">다롱지 전병 과자</div><div class="place-meta" style="font-size:10px;color:var(--muted);margin-bottom:2px;">Darongji Battercake Guozi</div><div class="place-meta">友好路236号 · 스낵&패스트푸드</div><div class="place-price">¥13/인</div></div><div><div class="map-link">지도 →</div></div></a>
-      <a class="place-item" href="https://surl.amap.com/aukmVNI15dqP" target="_blank"><div class="place-index">02</div><div class="place-body"><div class="place-name">타오위안 시장</div><div class="place-meta" style="font-size:10px;color:var(--muted);margin-bottom:2px;">桃源市场</div><div class="place-meta">中山区桃源桥与解放路교차로 · 농산물시장</div></div><div><div class="map-link">지도 →</div></div></a>
+      <a class="place-item" href="https://surl.amap.com/a6IGT1Q19gw6" target="_blank">
+        <div class="place-index">01</div>
+        <div class="place-body">
+          <div class="place-name">다롱지 전병 과자</div>
+          <div class="place-meta" style="font-size:10px;color:var(--muted);margin-bottom:2px;">Darongji Battercake Guozi</div>
+          <div class="place-meta">友好路236号 · 스낵&패스트푸드</div>
+          <div class="place-price">¥13/인</div>
+        </div>
+        <div>
+          <div class="map-link">지도 →</div>
+        </div>
+      </a>
+      <a class="place-item" href="https://surl.amap.com/aukmVNI15dqP" target="_blank">
+        <div class="place-index">02</div>
+        <div class="place-body">
+          <div class="place-name">타오위안 시장</div>
+          <div class="place-meta" style="font-size:10px;color:var(--muted);margin-bottom:2px;">桃源市场</div>
+          <div class="place-meta">中山区桃源桥与解放路교차로 · 농산물시장</div>
+          <div class="place-price">시장</div>
+        </div>
+        <div>
+          <div class="map-link">지도 →</div>
+        </div>
+      </a>
     </div>
   </div>
+
+  <!-- 마사지 -->
   <div class="section-card spa-card">
-    <div class="section-header"><div class="section-icon">🪷</div><div class="section-title">마사지</div><div class="section-count">2곳</div></div>
+    <div class="section-header">
+      <div class="section-icon">🪷</div>
+      <div class="section-title">마사지</div>
+      <div class="section-count">2곳</div>
+    </div>
     <div class="place-list">
-      <a class="place-item" href="https://surl.amap.com/adSt4jY10gFG" target="_blank"><div class="place-index">01</div><div class="place-body"><div class="place-name">오디 발 마사지</div><div class="place-meta" style="font-size:10px;color:var(--muted);margin-bottom:2px;">鸥迪足道 (파크슨 매장)</div><div class="place-meta">金华街8-12号</div><div class="place-price">¥128/인</div></div><div><div class="map-link">지도 →</div></div></a>
-      <a class="place-item" href="https://surl.amap.com/aElZ5UO9gx4" target="_blank"><div class="place-index">02</div><div class="place-body"><div class="place-name">리정 탕치주 헬스클럽</div><div class="place-meta" style="font-size:10px;color:var(--muted);margin-bottom:2px;">Lizheng Tangqijiu (연안로점)</div><div class="place-meta">义德街30号 · 중산광장역 D2출구</div></div><div><div class="map-link">지도 →</div></div></a>
+      <a class="place-item" href="https://surl.amap.com/adSt4jY10gFG" target="_blank">
+        <div class="place-index">01</div>
+        <div class="place-body">
+          <div class="place-name">오디 발 마사지</div>
+          <div class="place-meta" style="font-size:10px;color:var(--muted);margin-bottom:2px;">鸥迪足道 (파크슨 매장)</div>
+          <div class="place-meta">파크슨 매장 · 金华街8-12号</div>
+          <div class="place-price">¥128/인</div>
+        </div>
+        <div>
+          <div class="map-link">지도 →</div>
+        </div>
+      </a>
+      <a class="place-item" href="https://surl.amap.com/aElZ5UO9gx4" target="_blank">
+        <div class="place-index">02</div>
+        <div class="place-body">
+          <div class="place-name">리정 탕치주 헬스클럽</div>
+          <div class="place-meta" style="font-size:10px;color:var(--muted);margin-bottom:2px;">Lizheng Tangqijiu (연안로점)</div>
+          <div class="place-meta">义德街30号 · 중산광장역 D2출구 · 물리치료</div>
+        </div>
+        <div>
+          <div class="map-link">지도 →</div>
+        </div>
+      </a>
     </div>
   </div>
+
+  <!-- 쇼핑 -->
   <div class="section-card">
-    <div class="section-header"><div class="section-icon icon-shopping">🛍</div><div class="section-title">쇼핑</div><div class="section-count">2곳</div></div>
+    <div class="section-header">
+      <div class="section-icon icon-shopping">🛍</div>
+      <div class="section-title">쇼핑</div>
+      <div class="section-count">2곳</div>
+    </div>
     <div class="place-list">
-      <a class="place-item" href="https://surl.amap.com/a7gNCs61fgE8" target="_blank"><div class="place-index">01</div><div class="place-body"><div class="place-name">승리광장 지하상가</div><div class="place-meta" style="font-size:10px;color:var(--muted);margin-bottom:2px;">Victory Shopping Plaza</div><div class="place-meta">中山区胜利广场28号</div></div><div><div class="map-link">지도 →</div></div></a>
-      <a class="place-item" href="https://surl.amap.com/2MqtxguS0fh" target="_blank"><div class="place-index">02</div><div class="place-body"><div class="place-name">파레스프링 쇼핑몰</div><div class="place-meta" style="font-size:10px;color:var(--muted);margin-bottom:2px;">柏威年</div><div class="place-meta">中山路129-3号 · 青泥洼桥역 E3</div></div><div><div class="map-link">지도 →</div></div></a>
+      <a class="place-item" href="https://surl.amap.com/a7gNCs61fgE8" target="_blank">
+        <div class="place-index">01</div>
+        <div class="place-body">
+          <div class="place-name">승리광장 지하상가</div>
+          <div class="place-meta" style="font-size:10px;color:var(--muted);margin-bottom:2px;">Victory Shopping Plaza East Gate</div>
+          <div class="place-meta">中山区胜利广场28号 · 지하상가</div>
+        </div>
+        <div>
+          <div class="map-link">지도 →</div>
+        </div>
+      </a>
+      <a class="place-item" href="https://surl.amap.com/2MqtxguS0fh" target="_blank">
+        <div class="place-index">02</div>
+        <div class="place-body">
+          <div class="place-name">파레스프링 쇼핑몰</div>
+          <div class="place-meta" style="font-size:10px;color:var(--muted);margin-bottom:2px;">柏威年</div>
+          <div class="place-meta">中山路129-3号 · 青泥洼桥역 E3 · 쇼핑몰</div>
+        </div>
+        <div>
+          <div class="map-link">지도 →</div>
+        </div>
+      </a>
     </div>
   </div>
+
+  <!-- 관광지 -->
   <div class="section-card full-width">
-    <div class="section-header"><div class="section-icon icon-tour">🗺</div><div class="section-title">관광지</div><div class="section-count">6곳</div></div>
+    <div class="section-header">
+      <div class="section-icon icon-tour">🗺</div>
+      <div class="section-title">관광지</div>
+      <div class="section-count">6곳</div>
+    </div>
     <div class="place-list" style="display:grid;grid-template-columns:1fr 1fr 1fr;">
-      <a class="place-item" href="https://surl.amap.com/aiJ1tj8C73H" target="_blank"><div class="place-index">01</div><div class="place-body"><div class="place-name">선아시아 해양 세계</div><div style="font-size:10px;color:var(--muted);margin-bottom:3px;">大连圣亚海洋世界</div><div class="place-meta">中山路608号 · 4A급</div><div class="map-link" style="margin-top:6px;">지도 →</div></div></a>
-      <a class="place-item" href="https://surl.amap.com/ajrGLsq1qdi0" target="_blank"><div class="place-index">02</div><div class="place-body"><div class="place-name">골든 샌드 비치</div><div style="font-size:10px;color:var(--muted);margin-bottom:3px;">金石滩海水浴场</div><div class="place-meta">빈하이서로 · 해수욕장</div><div class="map-link" style="margin-top:6px;">지도 →</div></div></a>
-      <a class="place-item" href="https://surl.amap.com/akC4HhkYcYz" target="_blank"><div class="place-index">03</div><div class="place-body"><div class="place-name">다롄 산림 동물원</div><div style="font-size:10px;color:var(--muted);margin-bottom:3px;">大连森林动物园</div><div class="place-meta">迎春路60号 · 4A급</div><div class="map-link" style="margin-top:6px;">지도 →</div></div></a>
-      <a class="place-item" href="https://surl.amap.com/amLjA62179pi" target="_blank"><div class="place-index">04</div><div class="place-body"><div class="place-name">뤼순 러일전쟁 감옥 박물관</div><div style="font-size:10px;color:var(--muted);margin-bottom:3px;">旅顺日俄监狱旧址博物馆</div><div class="place-meta">方向阳街139号 · 박물관</div><div class="map-link" style="margin-top:6px;">지도 →</div></div></a>
-      <a class="place-item" href="https://surl.amap.com/DVebGKR4VG" target="_blank"><div class="place-index">05</div><div class="place-body"><div class="place-name">동관지에 역사거리</div><div style="font-size:10px;color:var(--muted);margin-bottom:3px;">東關街</div><div class="place-meta">大龙街775号</div><div class="map-link" style="margin-top:6px;">지도 →</div></div></a>
-      <a class="place-item" href="https://surl.amap.com/hPOA9lY1a8O1" target="_blank"><div class="place-index">06</div><div class="place-body"><div class="place-name">동방수성 수상도시</div><div style="font-size:10px;color:var(--muted);margin-bottom:3px;">De L'eau Montage · 东方水城</div><div class="place-meta">港浦路114号</div><div class="map-link" style="margin-top:6px;">지도 →</div></div></a>
+      <a class="place-item" href="https://surl.amap.com/aiJ1tj8C73H" target="_blank">
+        <div class="place-index">01</div>
+        <div class="place-body">
+          <div class="place-name">선아시아 해양 세계</div>
+          <div style="font-size:10px;color:var(--muted);margin-bottom:3px;">大连圣亚海洋世界</div>
+          <div class="place-meta">沙河口 中山路608号 · 4A급</div>
+          <div class="map-link" style="margin-top:6px;">지도 →</div>
+        </div>
+      </a>
+      <a class="place-item" href="https://surl.amap.com/ajrGLsq1qdi0" target="_blank">
+        <div class="place-index">02</div>
+        <div class="place-body">
+          <div class="place-name">골든 샌드 비치</div>
+          <div style="font-size:10px;color:var(--muted);margin-bottom:3px;">金石滩海水浴场</div>
+          <div class="place-meta">沙河口 빈하이서로 · 해수욕장</div>
+          <div class="map-link" style="margin-top:6px;">지도 →</div>
+        </div>
+      </a>
+      <a class="place-item" href="https://surl.amap.com/akC4HhkYcYz" target="_blank">
+        <div class="place-index">03</div>
+        <div class="place-body">
+          <div class="place-name">다롄 산림 동물원</div>
+          <div style="font-size:10px;color:var(--muted);margin-bottom:3px;">大连森林动物园</div>
+          <div class="place-meta">西岗 迎春路60号 · 4A급</div>
+          <div class="map-link" style="margin-top:6px;">지도 →</div>
+        </div>
+      </a>
+      <a class="place-item" href="https://surl.amap.com/amLjA62179pi" target="_blank">
+        <div class="place-index">04</div>
+        <div class="place-body">
+          <div class="place-name">뤼순 러일전쟁 감옥 박물관</div>
+          <div style="font-size:10px;color:var(--muted);margin-bottom:3px;">旅顺日俄监狱旧址博物馆</div>
+          <div class="place-meta">旅顺口 方向阳街139号 · 박물관</div>
+          <div class="map-link" style="margin-top:6px;">지도 →</div>
+        </div>
+      </a>
+      <a class="place-item" href="https://surl.amap.com/DVebGKR4VG" target="_blank">
+        <div class="place-index">05</div>
+        <div class="place-body">
+          <div class="place-name">동관지에 역사거리</div>
+          <div style="font-size:10px;color:var(--muted);margin-bottom:3px;">東關街</div>
+          <div class="place-meta">西岗 大龙街775号 · 역사거리</div>
+          <div class="map-link" style="margin-top:6px;">지도 →</div>
+        </div>
+      </a>
+      <a class="place-item" href="https://surl.amap.com/hPOA9lY1a8O1" target="_blank">
+        <div class="place-index">06</div>
+        <div class="place-body">
+          <div class="place-name">동방수성 수상도시</div>
+          <div style="font-size:10px;color:var(--muted);margin-bottom:3px;">De L'eau Montage · 东方水城</div>
+          <div class="place-meta">港浦路114号 · 东方水城 · 수상도시</div>
+          <div class="map-link" style="margin-top:6px;">지도 →</div>
+        </div>
+      </a>
     </div>
   </div>
+
 </div>
-<div class="footer">
-  <div class="footer-info">예약번호 14008237388444480 · PIN **** · nh***1@gmail.com</div>
-  <div class="cancel-notice">⚠ 무료 취소 기한 · 2026.04.02(목) 18:00 현지시간 이전</div>
-</div>
+
+
+
 </body>
 </html>
