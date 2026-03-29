@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大连 · 다롄 여행</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;900&family=DM+Mono:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #2c2420;
+    --paper: #fdfaf4;
+    --red: #d94f3d;
+    --gold: #c9a84c;
+    --muted: #9c8e80;
+    --line: #e8e0d0;
+    --card: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Noto Sans KR', sans-serif; font-weight: 300; min-height: 100vh; }
+  .header { background: #3a2e28; color: var(--paper); padding: 48px 40px 40px; position: relative; overflow: hidden; }
+  .header::before { content: '大连'; font-family: 'Noto Serif KR', serif; font-size: 200px; font-weight: 900; color: rgba(255,255,255,0.04); position: absolute; right: -20px; top: -30px; line-height: 1; pointer-events: none; letter-spacing: -8px; }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; }
+  .trip-title { font-family: 'Noto Serif KR', serif; font-size: 13px; font-weight: 400; color: var(--gold); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 10px; }
+  .city-name { font-family: 'Noto Serif KR', serif; font-size: 52px; font-weight: 900; line-height: 1; letter-spacing: -2px; }
+  .city-sub { font-family: 'DM Mono', monospace; font-size: 13px; color: rgba(245,240,232,0.4); margin-top: 8px; letter-spacing: 2px; }
+  .flight-badge { background: var(--red); padding: 16px 24px; border-radius: 2px; text-align: right; }
+  .flight-badge .route { font-family: 'DM Mono', monospace; font-size: 18px; font-weight: 500; letter-spacing: 3px; }
+  .flight-badge .dates { font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 4px; letter-spacing: 1px; }
+  .flight-strip { background: #4a3f38; padding: 20px 40px; display: flex; gap: 0; align-items: stretch; overflow-x: auto; }
+  .flight-card { flex: 1; min-width: 200px; padding: 16px 24px; border-right: 1px solid rgba(255,255,255,0.08); }
+  .flight-card:last-child { border-right: none; }
+  .flight-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--gold); letter-spacing: 3px; margin-bottom: 8px; }
+  .flight-info { color: var(--paper); font-size: 13px; line-height: 1.8; }
+  .flight-time { font-family: 'DM Mono', monospace; font-size: 22px; font-weight: 500; color: #fff; letter-spacing: 1px; }
+  .flight-num { font-family: 'DM Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.4); }
+  .hotel-strip { background: var(--gold); padding: 16px 40px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .hotel-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; color: rgba(26,20,16,0.5); }
+  .hotel-name { font-family: 'Noto Serif KR', serif; font-size: 16px; font-weight: 600; color: var(--ink); }
+  .hotel-detail { font-family: 'DM Mono', monospace; font-size: 11px; color: rgba(26,20,16,0.55); margin-left: auto; display: flex; gap: 20px; }
+  .hotel-detail span { display: flex; align-items: center; gap: 6px; }
+  .checklist-bar { background: #5a4e46; padding: 14px 40px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .checklist-title { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--gold); letter-spacing: 3px; margin-right: 8px; }
+  .check-item { display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; cursor: pointer; transition: all 0.2s; }
+  .check-item:hover { background: rgba(184,149,42,0.15); border-color: var(--gold); }
+  .check-item.done { background: rgba(184,149,42,0.2); border-color: var(--gold); }
+  .check-item.done .check-circle { background: var(--gold); }
+  .check-item.done .check-circle::after { opacity: 1; }
+  .check-circle { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.3); position: relative; transition: all 0.2s; flex-shrink: 0; }
+  .check-circle::after { content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 8px; color: var(--ink); font-weight: 700; opacity: 0; transition: opacity 0.2s; }
+  .check-text { font-family: 'DM Mono', monospace; font-size: 11px; color: rgba(245,240,232,0.7); }
+  .main { padding: 40px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  @media (max-width: 900px) { .main { grid-template-columns: 1fr 1fr; padding: 24px; } .header { padding: 32px 24px 28px; } .flight-strip, .hotel-strip, .checklist-bar { padding: 16px 24px; } }
+  @media (max-width: 600px) { .main { grid-template-columns: 1fr; padding: 16px; } .city-name { font-size: 36px; } .header::before { font-size: 120px; } }
+  .section-card { background: var(--card); border: 1px solid var(--line); border-radius: 2px; overflow: hidden; }
+  .section-card.full-width { grid-column: 1 / -1; }
+  .section-header { padding: 14px 20px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 10px; }
+  .section-icon { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+  .icon-dinner { background: #fde8e0; }
+  .icon-breakfast { background: #fff8e0; }
+  .icon-shopping { background: #e8f0ff; }
+  .icon-tour { background: #e4f5e8; }
+  .section-title { font-family: 'Noto Serif KR', serif; font-size: 14px; font-weight: 600; }
+  .section-count { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-left: auto; letter-spacing: 1px; }
+  .place-list { padding: 0; }
+  .place-item { padding: 14px 20px; border-bottom: 1px solid var(--line); display: flex; align-items: flex-start; gap: 12px; transition: background 0.15s; text-decoration: none; color: inherit; cursor: pointer; }
+  .place-item:last-child { border-bottom: none; }
+  .place-item:hover { background: #f0ebe0; }
+  .place-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); min-width: 18px; margin-top: 2px; }
+  .place-body { flex: 1; }
+  .place-name { font-size: 13px; font-weight: 500; line-height: 1.4; margin-bottom: 3px; }
+  .place-meta { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); line-height: 1.5; }
+  .place-price { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; color: var(--red); white-space: nowrap; margin-top: 2px; }
+  .map-link { display: inline-flex; align-items: center; gap: 3px; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--gold); text-decoration: none; margin-top: 4px; padding: 3px 8px; border: 1px solid var(--gold); border-radius: 2px; transition: all 0.15s; }
+  .map-link:hover { background: var(--gold); color: var(--ink); }
+  .spa-card .section-header { background: #4a2f4a; }
+  .spa-card .section-title { color: #e8c8e8; }
+  .spa-card .section-icon { background: rgba(255,255,255,0.1); }
+  .spa-card .section-count { color: rgba(232,200,232,0.5); }
+  .spa-card .place-item { border-color: rgba(0,0,0,0.06); }
+  .spa-card .place-item:hover { background: #f8f0f8; }
+  .footer { padding: 24px 40px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-info { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 1px; }
+  .cancel-notice { background: #fff5f3; border: 1px solid #f5c0b0; padding: 8px 16px; border-radius: 2px; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--red); letter-spacing: 0.5px; }
+</style>
+</head>
+<body>
+<div class="header">
