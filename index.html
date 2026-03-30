@@ -302,7 +302,11 @@
   .icon-breakfast { background: #fff8e0; }
   .icon-shopping { background: #e8f0ff; }
   .icon-tour { background: #e4f5e8; }
-  .icon-cafe { background: #fdf0e0; }
+  .icon-cafe { background: rgba(255,255,255,0.2); }
+  .cafe-card .section-header { background: #c9a84c !important; }
+  .cafe-card .section-title { color: #fff9e0 !important; }
+  .cafe-card .section-count { color: rgba(255,249,224,0.6) !important; }
+  .cafe-card .place-item:hover { background: #fffde8; }
   .icon-spa { background: #f5e8f5; }
 
   .section-title {
@@ -427,7 +431,7 @@
   /* FOOTER */
   .footer {
     padding: 24px 40px;
-    border-top: 1px solid var(--line);
+    border-top: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -596,9 +600,10 @@
     <div class="section-header">
       <div class="section-icon icon-dinner">🍢</div>
       <div class="section-title">저녁 식사</div>
-      <div class="section-count">5곳</div>
+      <div class="section-count" id="dinner-count">5곳</div>
+      <button onclick="openAddModal('dinner')" style="display:inline-flex;align-items:center;border:1.5px solid rgba(255,255,255,0.6);background:transparent;color:rgba(255,255,255,0.95);font-size:10px;font-weight:600;cursor:pointer;outline:none;margin-left:8px;flex-shrink:0;padding:4px 12px;border-radius:4px;letter-spacing:0.5px;white-space:nowrap;">+ 추가</button>
     </div>
-    <div class="place-list">
+    <div class="place-list" id="dinner-list">
       <a class="place-item" href="https://surl.amap.com/mZkdTdf1ggkh" target="_blank">
         <div class="place-index">01</div>
         <div class="place-body">
@@ -664,9 +669,10 @@
     <div class="section-header">
       <div class="section-icon icon-breakfast">🌅</div>
       <div class="section-title">아침 식사</div>
-      <div class="section-count">2곳</div>
+      <div class="section-count" id="breakfast-count">2곳</div>
+      <button onclick="openAddModal('breakfast')" style="display:inline-flex;align-items:center;border:1.5px solid rgba(255,255,255,0.6);background:transparent;color:rgba(255,255,255,0.95);font-size:10px;font-weight:600;cursor:pointer;outline:none;margin-left:8px;flex-shrink:0;padding:4px 12px;border-radius:4px;letter-spacing:0.5px;white-space:nowrap;">+ 추가</button>
     </div>
-    <div class="place-list">
+    <div class="place-list" id="breakfast-list">
       <a class="place-item" href="https://surl.amap.com/a6IGT1Q19gw6" target="_blank">
         <div class="place-index">01</div>
         <div class="place-body">
@@ -699,9 +705,10 @@
     <div class="section-header">
       <div class="section-icon">🪷</div>
       <div class="section-title">마사지</div>
-      <div class="section-count">2곳</div>
+      <div class="section-count" id="spa-count">2곳</div>
+      <button onclick="openAddModal('spa')" style="display:inline-flex;align-items:center;border:1.5px solid rgba(255,255,255,0.6);background:transparent;color:rgba(255,255,255,0.95);font-size:10px;font-weight:600;cursor:pointer;outline:none;margin-left:8px;flex-shrink:0;padding:4px 12px;border-radius:4px;letter-spacing:0.5px;white-space:nowrap;">+ 추가</button>
     </div>
-    <div class="place-list">
+    <div class="place-list" id="spa-list">
       <a class="place-item" href="https://surl.amap.com/adSt4jY10gFG" target="_blank">
         <div class="place-index">01</div>
         <div class="place-body">
@@ -733,9 +740,10 @@
     <div class="section-header">
       <div class="section-icon icon-shopping">🛍</div>
       <div class="section-title">쇼핑</div>
-      <div class="section-count">2곳</div>
+      <div class="section-count" id="shopping-count">2곳</div>
+      <button onclick="openAddModal('shopping')" style="display:inline-flex;align-items:center;border:1.5px solid rgba(255,255,255,0.6);background:transparent;color:rgba(255,255,255,0.95);font-size:10px;font-weight:600;cursor:pointer;outline:none;margin-left:8px;flex-shrink:0;padding:4px 12px;border-radius:4px;letter-spacing:0.5px;white-space:nowrap;">+ 추가</button>
     </div>
-    <div class="place-list">
+    <div class="place-list" id="shopping-list">
       <a class="place-item" href="https://surl.amap.com/a7gNCs61fgE8" target="_blank">
         <div class="place-index">01</div>
         <div class="place-body">
@@ -762,16 +770,15 @@
   </div>
 
   <!-- 카페 -->
-  <div class="section-card cafe-card">
+  <div class="section-card cafe-card" id="cafe-card">
     <div class="section-header">
       <div class="section-icon icon-cafe">☕</div>
       <div class="section-title">카페</div>
-      <div class="section-count">0곳</div>
+      <div class="section-count" id="cafe-count">0곳</div>
+      <button onclick="openAddModal('cafe')" style="display:inline-flex;align-items:center;border:1.5px solid rgba(255,255,255,0.6);background:transparent;color:rgba(255,255,255,0.95);font-size:10px;font-weight:600;cursor:pointer;outline:none;margin-left:8px;flex-shrink:0;padding:4px 12px;border-radius:4px;letter-spacing:0.5px;white-space:nowrap;">+ 추가</button>
     </div>
-    <div class="place-list">
-      <div style="padding:24px 20px;text-align:center;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);">
-        장소를 추가해주세요
-      </div>
+    <div class="place-list" id="cafe-list">
+      <div style="padding:24px 20px;text-align:center;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);">장소를 추가해주세요</div>
     </div>
   </div>
 
@@ -780,7 +787,8 @@
     <div class="section-header">
       <div class="section-icon icon-tour">🗺</div>
       <div class="section-title">관광지</div>
-      <div class="section-count">7곳</div>
+      <div class="section-count" id="tour-count">7곳</div>
+      <button onclick="openAddModal('tour')" style="display:inline-flex;align-items:center;border:1.5px solid rgba(255,255,255,0.6);background:transparent;color:rgba(255,255,255,0.95);font-size:10px;font-weight:600;cursor:pointer;outline:none;margin-left:8px;flex-shrink:0;padding:4px 12px;border-radius:4px;letter-spacing:0.5px;white-space:nowrap;">+ 추가</button>
     </div>
     <div class="place-list" style="display:grid;grid-template-columns:1fr 1fr 1fr;">
       <a class="place-item" href="https://surl.amap.com/aiJ1tj8C73H" target="_blank">
@@ -1073,6 +1081,197 @@ function filterMarkers(cat) {
     map.fitBounds(group.getBounds().pad(0.15));
   }
 }
+</script>
+
+<!-- 장소 추가 모달 -->
+<div id="add-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:white;border-radius:8px;padding:28px;width:90%;max-width:420px;box-shadow:0 8px 32px rgba(0,0,0,0.2);">
+    <div style="font-family:'Noto Serif KR',serif;font-size:16px;font-weight:600;margin-bottom:20px;color:var(--ink);">📍 장소 추가</div>
+
+    <div style="margin-bottom:14px;">
+      <label style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;display:block;margin-bottom:6px;">카테고리</label>
+      <select id="modal-cat" style="width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:4px;font-family:'Noto Sans KR',sans-serif;font-size:13px;color:var(--ink);background:white;">
+        <option value="dinner">🍢 저녁 식사</option>
+        <option value="breakfast">🌅 아침 식사</option>
+        <option value="cafe">☕ 카페</option>
+        <option value="spa">🪷 마사지</option>
+        <option value="shopping">🛍 쇼핑</option>
+        <option value="tour">📍 관광지</option>
+      </select>
+    </div>
+
+    <div style="margin-bottom:14px;">
+      <label style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;display:block;margin-bottom:6px;">장소 이름 *</label>
+      <input id="modal-name" type="text" placeholder="예: 스타벅스 중산점" style="width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:4px;font-family:'Noto Sans KR',sans-serif;font-size:13px;box-sizing:border-box;"/>
+    </div>
+
+    <div style="margin-bottom:14px;">
+      <label style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;display:block;margin-bottom:6px;">지도 링크 (Amap)</label>
+      <input id="modal-url" type="text" placeholder="https://surl.amap.com/..." style="width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:4px;font-family:'DM Mono',monospace;font-size:11px;box-sizing:border-box;"/>
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <label style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;display:block;margin-bottom:6px;">추가자 이름</label>
+      <select id="modal-who" style="width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:4px;font-family:'DM Mono',monospace;font-size:13px;color:var(--ink);background:white;">
+        <option value="JYP">JYP</option>
+        <option value="JYJ">JYJ</option>
+        <option value="KKT">KKT</option>
+        <option value="HNH">HNH</option>
+      </select>
+    </div>
+
+    <div id="modal-error" style="display:none;font-size:11px;color:var(--red);margin-bottom:12px;font-family:'DM Mono',monospace;"></div>
+
+    <div style="display:flex;gap:10px;">
+      <button onclick="closeModal()" style="flex:1;padding:10px;border:1px solid var(--line);border-radius:4px;background:white;font-family:'Noto Sans KR',sans-serif;font-size:13px;cursor:pointer;color:var(--muted);">취소</button>
+      <button onclick="submitPlace()" id="submit-btn" style="flex:2;padding:10px;border:none;border-radius:4px;background:var(--ink);color:white;font-family:'Noto Sans KR',sans-serif;font-size:13px;cursor:pointer;font-weight:500;">추가하기</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  #add-modal.open { display:flex !important; }
+</style>
+
+<script>
+const GITHUB_TOKEN = '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';
+const REPO = 'jypmylife-lab/Friends-Trip';
+
+const catLabels = {
+  dinner:    { title:'저녁 식사', icon:'🍢', color:'#7a2218' },
+  breakfast: { title:'아침 식사', icon:'🌅', color:'#7a5010' },
+  cafe:      { title:'카페',     icon:'☕', color:'#b8860b' },
+  spa:       { title:'마사지',   icon:'🪷', color:'#4a2f4a' },
+  shopping:  { title:'쇼핑',    icon:'🛍', color:'#1a3a6a' },
+  tour:      { title:'관광지',   icon:'📍', color:'#1a4a2a' },
+};
+
+function openAddModal(cat) {
+  document.getElementById('modal-cat').value = cat || 'cafe';
+  document.getElementById('modal-name').value = '';
+  document.getElementById('modal-url').value = '';
+  document.getElementById('modal-error').style.display = 'none';
+  document.getElementById('add-modal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('add-modal').classList.remove('open');
+}
+
+async function submitPlace() {
+  const cat  = document.getElementById('modal-cat').value;
+  const name = document.getElementById('modal-name').value.trim();
+  const url  = document.getElementById('modal-url').value.trim();
+  const who  = document.getElementById('modal-who').value;
+  const btn  = document.getElementById('submit-btn');
+  const err  = document.getElementById('modal-error');
+
+  if (!name) { err.textContent = '장소 이름을 입력해주세요'; err.style.display='block'; return; }
+
+  btn.textContent = '저장 중...';
+  btn.disabled = true;
+
+  const body = JSON.stringify({
+    title: `[${cat}] ${name}`,
+    body: `카테고리: ${catLabels[cat].title}\n장소명: ${name}\n링크: ${url || '없음'}\n추가자: ${who}`,
+    labels: [cat, 'place']
+  });
+
+  try {
+    const res = await fetch(`https://api.github.com/repos/${REPO}/issues`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `token ${GITHUB_TOKEN}`,
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.github.v3+json'
+      },
+      body
+    });
+
+    if (!res.ok) throw new Error(await res.text());
+
+    closeModal();
+    await loadPlaces();
+  } catch(e) {
+    err.textContent = '저장 실패: ' + e.message;
+    err.style.display = 'block';
+  } finally {
+    btn.textContent = '추가하기';
+    btn.disabled = false;
+  }
+}
+
+async function loadPlaces() {
+  try {
+    const res = await fetch(`https://api.github.com/repos/${REPO}/issues?labels=place&state=open&per_page=100`, {
+      headers: {
+        'Authorization': `token ${GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github.v3+json'
+      }
+    });
+    const issues = await res.json();
+    if (!Array.isArray(issues)) return;
+
+    const cats = ['dinner','breakfast','cafe','spa','shopping','tour'];
+    const grouped = {};
+    cats.forEach(c => grouped[c] = []);
+    issues.forEach(issue => {
+      const found = issue.labels.find(l => cats.includes(l.name));
+      if (found) grouped[found.name].push(issue);
+    });
+
+    cats.forEach(cat => renderDynamicList(cat, grouped[cat]));
+  } catch(e) {
+    console.error('장소 로드 실패:', e.message || e);
+  }
+}
+
+function renderDynamicList(cat, items) {
+  const list = document.getElementById(`${cat}-list`);
+  const countEl = document.getElementById(`${cat}-count`);
+  if (!list || items.length === 0) return;
+
+  const existing = list.querySelectorAll('.place-item');
+  const baseNum = existing.length;
+
+  countEl && (countEl.textContent = (baseNum + items.length) + '곳');
+
+  items.forEach((issue, i) => {
+    const lines = issue.body.split('\n');
+    const urlLine = lines.find(l => l.startsWith('링크:'));
+    const whoLine = lines.find(l => l.startsWith('추가자:'));
+    const url = urlLine ? urlLine.replace('링크: ','').trim() : '';
+    const who = whoLine ? whoLine.replace('추가자: ','').trim() : '';
+    const hasUrl = url && url !== '없음';
+    const num = String(baseNum + i + 1).padStart(2, '0');
+    const cleanName = issue.title.replace(/^\[[a-z]+\] /, '');
+
+    const a = document.createElement('a');
+    a.className = 'place-item';
+    a.style.cssText = 'text-decoration:none;color:inherit;';
+    if (hasUrl) { a.href = url; a.target = '_blank'; }
+    a.innerHTML = `
+      <div class="place-index">${num}</div>
+      <div class="place-body">
+        <div class="place-name">${cleanName}</div>
+        ${who ? `<div class="place-meta" style="font-size:10px;color:var(--muted);margin-top:2px;">✏ ${who}</div>` : ''}
+      </div>
+      <div>${hasUrl ? '<div class="map-link">지도 →</div>' : ''}</div>`;
+    
+    // 빈 안내 문구 제거
+    const empty = list.querySelector('div[style*="text-align:center"]');
+    if (empty) empty.remove();
+    list.appendChild(a);
+  });
+}
+
+// 페이지 로드 시 실행
+window.addEventListener('load', loadPlaces);
+
+// 모달 외부 클릭 시 닫기
+document.getElementById('add-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
 </script>
 
 </body>
