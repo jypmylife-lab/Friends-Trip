@@ -302,6 +302,7 @@
   .icon-breakfast { background: #fff8e0; }
   .icon-shopping { background: #e8f0ff; }
   .icon-tour { background: #e4f5e8; }
+  .icon-cafe { background: #fdf0e0; }
   .icon-spa { background: #f5e8f5; }
 
   .section-title {
@@ -527,6 +528,39 @@
   </div>
 </div>
 
+<!-- WEATHER STRIP -->
+<div style="background:#f0f7ff;border-top:1px solid #d0e4f7;border-bottom:1px solid #d0e4f7;padding:14px 40px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;overflow-x:auto;">
+  <div style="font-family:'DM Mono',monospace;font-size:10px;color:#5a8ab0;letter-spacing:3px;margin-right:8px;white-space:nowrap;">대련 날씨 · 4월</div>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;">
+    <div style="background:white;border:1px solid #d0e4f7;border-radius:6px;padding:8px 14px;text-align:center;min-width:72px;">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:#5a8ab0;margin-bottom:4px;">4/2 목</div>
+      <div style="font-size:18px;margin-bottom:2px;">☀️</div>
+      <div style="font-size:12px;font-weight:600;color:#1a2a3a;">10°</div>
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:#8aaac0;">6°</div>
+    </div>
+    <div style="background:white;border:1px solid #d0e4f7;border-radius:6px;padding:8px 14px;text-align:center;min-width:72px;">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:#5a8ab0;margin-bottom:4px;">4/3 금</div>
+      <div style="font-size:18px;margin-bottom:2px;">⛅</div>
+      <div style="font-size:12px;font-weight:600;color:#1a2a3a;">12°</div>
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:#8aaac0;">4°</div>
+    </div>
+    <div style="background:white;border:1px solid #d0e4f7;border-radius:6px;padding:8px 14px;text-align:center;min-width:72px;">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:#5a8ab0;margin-bottom:4px;">4/4 토</div>
+      <div style="font-size:18px;margin-bottom:2px;">🌤</div>
+      <div style="font-size:12px;font-weight:600;color:#1a2a3a;">8°</div>
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:#8aaac0;">4°</div>
+    </div>
+    <div style="background:white;border:1px solid #d0e4f7;border-radius:6px;padding:8px 14px;text-align:center;min-width:72px;">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:#5a8ab0;margin-bottom:4px;">4/5 일</div>
+      <div style="font-size:18px;margin-bottom:2px;">🌧</div>
+      <div style="font-size:12px;font-weight:600;color:#1a2a3a;">7°</div>
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:#8aaac0;">6°</div>
+    </div>
+  </div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;color:#8aaac0;margin-left:8px;line-height:1.6;">구글 날씨 기준<br>겉옷 필수 · 바람 강함</div>
+  <a href="https://www.timeanddate.com/weather/china/luda/ext" target="_blank" style="margin-left:auto;font-family:'DM Mono',monospace;font-size:9px;color:#5a8ab0;border:1px solid #d0e4f7;padding:4px 10px;border-radius:2px;text-decoration:none;white-space:nowrap;transition:all 0.15s;" onmouseover="this.style.background='#e8f2ff'" onmouseout="this.style.background='transparent'">실시간 예보 →</a>
+</div>
+
 <!-- CHECKLIST -->
 <div class="checklist-bar">
   <div class="checklist-title">CHECKLIST</div>
@@ -562,7 +596,7 @@
     <div class="section-header">
       <div class="section-icon icon-dinner">🍢</div>
       <div class="section-title">저녁 식사</div>
-      <div class="section-count">4곳</div>
+      <div class="section-count">5곳</div>
     </div>
     <div class="place-list">
       <a class="place-item" href="https://surl.amap.com/mZkdTdf1ggkh" target="_blank">
@@ -606,6 +640,17 @@
           <div class="place-name">서안로 야시장</div>
           <div class="place-meta" style="font-size:10px;color:var(--muted);margin-bottom:2px;">西安路夜市</div>
           <div class="place-meta">야시장</div>
+        </div>
+        <div>
+          <div class="map-link">지도 →</div>
+        </div>
+      </a>
+      <a class="place-item" href="https://surl.amap.com/7tYDeN4S52E" target="_blank">
+        <div class="place-index">05</div>
+        <div class="place-body">
+          <div class="place-name">시딩</div>
+          <div class="place-meta" style="font-size:10px;color:var(--muted);margin-bottom:2px;">西顶</div>
+          <div class="place-meta">레스토랑</div>
         </div>
         <div>
           <div class="map-link">지도 →</div>
@@ -716,6 +761,20 @@
     </div>
   </div>
 
+  <!-- 카페 -->
+  <div class="section-card cafe-card">
+    <div class="section-header">
+      <div class="section-icon icon-cafe">☕</div>
+      <div class="section-title">카페</div>
+      <div class="section-count">0곳</div>
+    </div>
+    <div class="place-list">
+      <div style="padding:24px 20px;text-align:center;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);">
+        장소를 추가해주세요
+      </div>
+    </div>
+  </div>
+
   <!-- 관광지 -->
   <div class="section-card full-width tour-card">
     <div class="section-header">
@@ -809,6 +868,7 @@
         <button onclick="filterMarkers('spa')" class="map-filter" data-cat="spa">🪷 마사지</button>
         <button onclick="filterMarkers('shopping')" class="map-filter" data-cat="shopping">🛍 쇼핑</button>
         <button onclick="filterMarkers('tour')" class="map-filter" data-cat="tour">📍 관광</button>
+        <button onclick="filterMarkers('cafe')" class="map-filter" data-cat="cafe">☕ 카페</button>
       </div>
     </div>
     <div id="realmap" style="width:100%;height:520px;z-index:1;position:relative;"></div>
@@ -870,6 +930,7 @@ const catColors = {
   spa:      '#9b5fa5',
   shopping: '#3d7fd9',
   tour:     '#3da05a',
+  cafe:     '#8b5a2b',
 };
 
 const places = [
@@ -878,8 +939,10 @@ const places = [
   { name: '씨쇼어 위라오', sub: 'Seashore Yulao', cat: 'dinner', icon: '🍢', lat: 38.9150, lng: 121.6300, price: '¥108/인', url: 'https://surl.amap.com/aeu2DcG1146N' },
   { name: '신흥전승오리구이', sub: '新兴全聚烤鸭', cat: 'dinner', icon: '🍢', lat: 38.9190, lng: 121.6330, price: '', url: 'https://surl.amap.com/1QkkVelj9HM' },
   { name: '서안로 야시장', sub: '西安路夜市', cat: 'dinner', icon: '🏮', lat: 38.9240, lng: 121.6150, price: '', url: 'https://surl.amap.com/f36GiZ3172MM' },
+  { name: '시딩', sub: '西顶', cat: 'dinner', icon: '🍽', lat: 38.9210, lng: 121.6320, price: '', url: 'https://surl.amap.com/7tYDeN4S52E' },
   { name: '신흥전승오리구이', sub: '新兴全聚烤鸭', cat: 'dinner', icon: '🍢', lat: 38.9190, lng: 121.6330, price: '', url: 'https://surl.amap.com/1QkkVelj9HM' },
   { name: '서안로 야시장', sub: '西安路夜市', cat: 'dinner', icon: '🏮', lat: 38.9240, lng: 121.6150, price: '', url: 'https://surl.amap.com/f36GiZ3172MM' },
+  { name: '시딩', sub: '西顶', cat: 'dinner', icon: '🍽', lat: 38.9210, lng: 121.6320, price: '', url: 'https://surl.amap.com/7tYDeN4S52E' },
   { name: '다롱지 전병 과자', sub: 'Darongji Battercake', cat: 'breakfast', icon: '🌅', lat: 38.9270, lng: 121.6200, price: '¥13/인', url: 'https://surl.amap.com/a6IGT1Q19gw6' },
   { name: '타오위안 시장', sub: '桃源市场', cat: 'breakfast', icon: '🛒', lat: 38.9100, lng: 121.6460, price: '시장', url: 'https://surl.amap.com/aukmVNI15dqP' },
   { name: '오디 발 마사지', sub: '鸥迪足道', cat: 'spa', icon: '🪷', lat: 38.9200, lng: 121.6280, price: '¥128/인', url: 'https://surl.amap.com/adSt4jY10gFG' },
